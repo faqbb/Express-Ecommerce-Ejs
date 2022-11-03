@@ -32,7 +32,8 @@ initializePassport()
 app.set('view engine','ejs')
 app.set('views',__dirname+'/views')
 
-const server = app.listen(config.port,() => console.log(`listening on ${config.port}`))
+const PORT = process.env.PORT || 8080
+const server = app.listen(PORT,() => console.log(`listening on ${PORT}`))
 
 app.use(passport.initialize())
 app.use(passport.session())
