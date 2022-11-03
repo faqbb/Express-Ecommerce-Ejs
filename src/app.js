@@ -9,6 +9,7 @@ import initializePassport from './config/passport.config.js';
 import passport from 'passport';
 import productService from './models/Products.js';
 import getRandomProducts from './mockHelper/productGenerator.js';
+import config from './config/indexYargs.js';
 
 const app = express()
 
@@ -31,7 +32,7 @@ initializePassport()
 app.set('view engine','ejs')
 app.set('views',__dirname+'/views')
 
-const server = app.listen(8080,() => console.log('Listening'))
+const server = app.listen(config.port,() => console.log(`listening on ${config.port}`))
 
 app.use(passport.initialize())
 app.use(passport.session())
