@@ -1,0 +1,26 @@
+
+
+<div class="card m-1" style="width: 12rem;">
+  <img class="card-img-top" src='<%- product.imageUrl %>'  alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%- product.name %> </h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%- product.category %> </h6>
+    <p class="card-text"><%- product.description %> </p>
+    <h5 class="text-success"> $<%- product.price %> </h5>
+    <button onclick="return addProduct('<%- product._id %>')" class="btn btn-primary">Agregar al carrito</button>
+  </div>
+</div>
+<script>
+  let addProduct = async (targetProd) => {
+    console.log(targetProd)
+    fetch('/api/addProduct', {
+        method:'POST',
+        body: JSON.stringify(targetProd),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(result =>result.json())
+      .then(data=>console.log(data))
+      .catch(error => console.error('Error:', error));
+  }
+</script>

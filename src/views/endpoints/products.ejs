@@ -1,0 +1,15 @@
+<%- include('../partials/head') %>
+<body class="bg-secondary">
+    <%- include('../partials/header') %>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="text-light h6">Bienvenido <%- user.name %>! Tienes <%- (user.cart.lenght>0) ? user.cart.lenght : 0 %> productos en el carrito </div>
+      <div class="my-1"><a href="../"><button class="btn btn-success">Ver carrito</button></a></div>
+    </div> 
+    <div class="d-flex justify-content-center mb-5 text-light h1 bg-dark">Productos</div>
+    <ul class="d-flex justify-content-around flex-wrap">
+      <% products.forEach(function(product){ %>
+        <%- include('../partials/productCard', {product: product}); %>
+      <% }); %>
+    </ul>
+    <%- include('../partials/scripts') %>
+</body>

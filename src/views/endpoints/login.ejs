@@ -1,0 +1,23 @@
+<%- include('../partials/head') %>
+<body class="bg-secondary">
+    <%- include('../partials/header') %>
+    <div class="d-flex flex-column align-items-center text-light">
+        <h1>Logueate</h1>
+        <form id="loginForm" class="d-flex flex-column p-2 col-3 bg-dark">
+            <label class="pt-4">Nombre de Usuario</label>
+            <input name="name">
+            <label class="pt-4">Correo</label>
+            <input name="email">
+            <label class="pt-4">Contraseña</label>
+            <input type="password" name="password">
+            <input type="submit" class="mt-4 btn btn-primary"> 
+        </form>
+        <div>
+            <a href="../">
+                <button class="mt-4 btn btn-primary"> Volver</button>
+            </a>
+        </div>
+    </div>
+    <%- include('../partials/scripts') %>
+    <script src="/js/login.js"></script>  
+</body>

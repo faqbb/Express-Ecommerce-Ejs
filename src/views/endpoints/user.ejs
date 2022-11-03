@@ -1,0 +1,9 @@
+<%- include('../partials/head') %>
+<body class="bg-secondary">
+    <%- include('../partials/header') %>
+    <div class="d-flex flex-column align-items-center text-light"><h2>Bienvenido <%= user.name %>  </user></h2>
+        <a href="/products"><button class="btn btn-success">Ver productos!</button></a> 
+        <a href="/api/logout"><button class="btn btn-danger">Desloguearse</button></a>
+    </div>
+    <%- include('../partials/scripts') %>
+</body>
