@@ -7,9 +7,9 @@ import mongoose from "mongoose";
 import MongoStore from 'connect-mongo'
 import initializePassport from './config/passport.config.js';
 import passport from 'passport';
-import productService from './models/Products.js';
+import productService from './dao/models/Products.js';
 import getRandomProducts from './mockHelper/productGenerator.js';
-import config from './config/indexYargs.js';
+
 
 const app = express()
 

@@ -1,7 +1,12 @@
 <%- include('../partials/head') %>
 <body class="bg-secondary">
     <%- include('../partials/header') %>
-    <div class="d-flex flex-column align-items-center text-light"><h2>Bienvenido <%= user.name %>  </user></h2>
+    <div class="d-flex flex-column align-items-center text-light">
+        <img src="<%= user.profilePic %> " alt="profile-pic" style="width: 16rem; height: 16rem">
+        <h2>Bienvenido <%= user.name %> </h2> 
+        <% if (user.role == 'admin') { %>
+                <div class="h3 text-success bg-dark"> ERES ADMIN</div> 
+            <% } %>  
         <a href="/products"><button class="btn btn-success">Ver productos!</button></a> 
         <a href="/api/logout"><button class="btn btn-danger">Desloguearse</button></a>
     </div>

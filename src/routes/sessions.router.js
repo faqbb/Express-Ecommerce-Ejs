@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userService from "../models/User.js";
+import userService from "../dao/models/User.js";
 import { createHash, isValidPassword } from "../utils.js";
 import passport from "passport";
 
@@ -12,7 +12,11 @@ router.post('/login',passport.authenticate('login',{failureRedirect:'/api/loginf
             req.session.user = {
                 name: req.user.name,
                 email: req.user.email,
-                id: req.user._Id
+                id:req.user._id,
+                cart: req.user.cart,
+                profilePic: req.user.profilePic,
+                age: req.user.age,
+                address: req.user.address
             }
             res.send({status:'success', payload: req.session.user})
         })
@@ -42,7 +46,10 @@ router.get('/githubcallback', passport.authenticate('github'), (req,res) =>{
         name:req.user.name,
         email:req.user.email,
         id:req.user._id,
-        cart: req.user.cart
+        cart: req.user.cart,
+        profilePic: req.user.profilePic,
+        age: req.user.age,
+        role: req.user.role
     }
     res.redirect('/api/user')
 })

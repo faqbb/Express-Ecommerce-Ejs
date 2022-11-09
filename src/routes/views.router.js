@@ -1,12 +1,12 @@
 import { Router } from "express";
-import productService from "../models/Products.js";
+import productService from "../dao/models/Products.js";
 
 const router = Router()
 router.get('/', async (req, res) => {
     if(!req.session.user){
         res.render('endpoints/home')
     }else{
-        res.redirect('endpoints/user')
+        res.redirect('/api/user')
     }    
 })
 
