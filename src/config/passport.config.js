@@ -1,6 +1,7 @@
 import passport from "passport";
 import local from 'passport-local'
-import userService from "../dao/models/User.js";
+import {usersService} from "../service/indexService.js";
+import { cartsService } from "../service/indexService.js";
 import { createHash, isValidPassword } from "../utils.js"
 import github from 'passport-github'
 
@@ -10,28 +11,28 @@ const GitHubStrategy = github.Strategy
 
 const initializePassport = () => {
     passport.use('register', new LocalStrategy({passReqToCallback:true, usernameField:"email"}, 
-    async(req, email, password, done)=>{
+    async(req, email, password, age, address, done)=>{
         const {name} = req.body
         if(!name||!email||!password||!age||!address) return done(null, false,{message:"Incomplete values"})
-            const exists = await userService.findOne({email:email})
+        const exists = await usersService.getByEmail(email)
         if(exists) return done(null,false, {message:"User already exists"})
+        const cart = await cartsService.createCart()
             const newUser = {
                 name,
                 email,
                 age,
                 address,
                 password:createHash(password),
-                cart: [],
+                cart: cart._id,
                 role: 'user'
             }
-        let result = await userService.create(newUser)
-        console.log(result)
+        let result = await usersService.saveUser(newUser)
         return done(null,result)
     }))
 
     passport.use('login', new LocalStrategy({usernameField:'email'}, async(email, password, done)=>{
         if(!email||!password) return done(null,false,{message:"Incomplete values"})
-        let user = await userService.findOne({email:email})
+        let user = await usersService.getUserByEmail(email)
         if(!user) return done(null,false,{message:"User not found"})
         if (!isValidPassword(user, password)) return done(null, false, {message:"Incorrect password"})
         return done(null, user)
@@ -43,22 +44,22 @@ const initializePassport = () => {
         callbackURL: 'http://localhost:8080/api/githubcallback'
     },async(accessToken, refreshToken, profile, done) => {
         const {name, email, avatar_url} = profile._json
-        let user = await userService.findOne({email:email})
+        let user = await usersService.getUserByEmail(email)
         if(!user){
+            const cart = await cartsService.createCart()
             let newUser = {
                 name,
                 email,
                 age: '',
                 address: '',
                 password:'',
-                cart: [],
+                cart: cart._id,
                 profilePic: avatar_url
             }
             
-            let result = await userService.create(newUser)
+            let result = await usersService.saveUser(newUser)
             return done(null,result)
         }else{
-            console.log(user)
             return done(null,user)
         }
     }))
@@ -68,7 +69,7 @@ const initializePassport = () => {
         })
 
     passport.deserializeUser(async(id,done)=>{
-            let result = await userService.findOne({_id:id})
+            let result = await usersService.getUserByID(id)
             return done(null, result)
         })
 

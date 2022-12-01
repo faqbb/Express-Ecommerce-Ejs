@@ -1,16 +1,17 @@
-import userService from "./models/User.js";
+import userModel from "./models/User.js";
 
 export default class UsersDao {
     getAll = () => {
-        return userService.find()
+        return userModel.find()
     }
-    getByID = (propid) => {
-        return userService.findOne({_id:propid})
+    getByID = async (propid) => {
+        let user = await userModel.findOne({_id:propid})
+        return user
     }
     getByEmail = (propEmail) => {
-        return userService.findOne({email: propEmail})
+        return userModel.findOne({email: propEmail})
     }
     save = (propUser) => {
-        return userService.create(propUser)
+        return userModel.create(propUser)
     }
 }

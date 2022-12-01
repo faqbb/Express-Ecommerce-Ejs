@@ -1,19 +1,22 @@
 import { Router } from "express";
-import userService from "../dao/models/User.js";
-import { createHash, isValidPassword } from "../utils.js";
 import passport from "passport";
+import sessionController from "../controllers/session.controller.js";
 
 const router = Router()
 
-router.post('/register', passport.authenticate('register',{failureRedirect:'/api/registerfail'}), async (req, res) => {
-    console.log('hola')
+router.post('/register', passport.authenticate('register'), async (req, res) => {
+    try{
+        console.log(req.body)
+        res.send({status:"success"})
+    } catch(error){console.log(error)}
 })
+
 router.post('/login',passport.authenticate('login',{failureRedirect:'/api/loginfail'}), async (req, res) => {
             req.session.user = {
                 name: req.user.name,
                 email: req.user.email,
                 id:req.user._id,
-                cart: req.user.cart,
+                cart: cart._id,
                 profilePic: req.user.profilePic,
                 age: req.user.age,
                 address: req.user.address
@@ -38,7 +41,7 @@ router.get('/logout', (req,res) =>{
 })
 
 router.get('/github', passport.authenticate('github', {scope:[]}), async(req,res) =>{
-    console.log('aver')
+    res.send({status:"success"})
 })
 
 router.get('/githubcallback', passport.authenticate('github'), (req,res) =>{
@@ -46,17 +49,15 @@ router.get('/githubcallback', passport.authenticate('github'), (req,res) =>{
         name:req.user.name,
         email:req.user.email,
         id:req.user._id,
-        cart: req.user.cart,
+        cart: req.user.cart || [],
         profilePic: req.user.profilePic,
         age: req.user.age,
         role: req.user.role
     }
+    req.session.save()
     res.redirect('/api/user')
 })
 
-router.post('/addProduct', (req,res) =>{
-    console.log(req.body)
-    res.send('repiola')
-})
+router.post('/addProduct', sessionController.addProduct)
 
 export default router

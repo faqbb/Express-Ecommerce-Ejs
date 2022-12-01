@@ -10,6 +10,6 @@ const productSchema = new mongoose.Schema({
         imageUrl: String
 })
 
-const productService = mongoose.model(collection, productSchema)
+const productModel = mongoose.model(collection, productSchema)
 
-export default productService
+export default productModel

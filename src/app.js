@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { urlencoded } from 'express'
 import __dirname from './utils.js'
 import viewsRouter from "./routes/views.router.js";
 import session from 'express-session'
@@ -16,6 +16,7 @@ const app = express()
 const connection = mongoose.connect('mongodb+srv://facundito:facundito@cluster0.a6edqvs.mongodb.net/?retryWrites=true&w=majority')
 
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.use(session({
     store: MongoStore.create({
