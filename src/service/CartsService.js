@@ -6,7 +6,7 @@ export default class CartsService {
         return this.dao.save()
     }
     getCartById = (cartId) => {
-        return this.dao.getCartById(cartId)
+        return this.dao.getById(cartId)
     }
     getPopulatedCart = (cartId) => {
         return this.dao.getByIdAndPopulate(cartId)

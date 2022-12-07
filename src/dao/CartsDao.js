@@ -13,9 +13,5 @@ export default class CartsDao {
     update = (id, cart) => {
         return cartsModel.findByIdAndUpdate(id, {$set: {products : cart.products}})
     }
-    addProductToCart = async(cart, product) =>{
-        cart.products.push(product)
-        return cart
-    }
 
 }

@@ -1,15 +1,17 @@
+
+
 const form = document.getElementById('loginForm')
 form.addEventListener('submit', async evt =>{
     evt.preventDefault()
     let data = new FormData(form)
     let obj = {}
     data.forEach((value,key) => obj[key]= value);
+    console.log(obj)
      fetch('/api/login', {
         method:'POST',
-        body: JSON.stringify(obj),
+        body: obj,
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
         }
-    }).then(result =>result.json()).then(data=>console.log(data)).catch(error => console.error('Error:', error));
+    }).then(response=>console.log(response.body)).catch(error => console.error('Error:', error));
 })
-// tira el mismo error que me tiraba el que tenia websockets, no consigo solucion alguna

@@ -1,5 +1,6 @@
 
 import productService from "../dao/models/Products.js";
+import { cartsService } from "../service/indexService.js";
 
 const showHome = async (req, res) => {
     if(!req.session.user){
@@ -13,7 +14,8 @@ const showHome = async (req, res) => {
     try {
         if(req.session.user) {
             const prods = await productService.find()
-            res.render('endpoints/products', {products: prods, user: req.session.user})
+            const targetCart = await cartsService.getCartById(req.session.user.cart)
+            res.render('endpoints/products', {products: prods, user: req.session.user, cart: targetCart})
         } else {
             res.render('failures/notLogged')
         }

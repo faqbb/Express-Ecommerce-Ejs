@@ -1,0 +1,10 @@
+<%- include('../partials/head') %>
+<body class="bg-secondary">
+    <%- include('../partials/header') %>
+    <div class="d-flex flex-column align-items-start text-light bg-dark">
+        <% cartProducts.forEach(function(product){ %>
+            <%- include('../partials/cartProductCard', {product: product}); %>
+          <% }); %>
+    </div>
+    <%- include('../partials/scripts') %>
+</body>

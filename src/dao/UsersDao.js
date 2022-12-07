@@ -14,4 +14,7 @@ export default class UsersDao {
     save = (propUser) => {
         return userModel.create(propUser)
     }
+    updateUser = (propUser) => {
+        
+    }
 }

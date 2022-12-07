@@ -11,7 +11,8 @@ router.post('/register', passport.authenticate('register'), async (req, res) => 
     } catch(error){console.log(error)}
 })
 
-router.post('/login',passport.authenticate('login',{failureRedirect:'/api/loginfail'}), async (req, res) => {
+router.post('/login',passport.authenticate('login'), async (req, res) => {
+    console.log(req.body)
             req.session.user = {
                 name: req.user.name,
                 email: req.user.email,
@@ -22,6 +23,7 @@ router.post('/login',passport.authenticate('login',{failureRedirect:'/api/loginf
                 address: req.user.address
             }
             res.send({status:'success', payload: req.session.user})
+            res.redirect('/api/user')
         })
 
 router.get('/user', (req,res) =>{

@@ -1,13 +1,12 @@
 {
   "name": "ecoexpejs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Ecommerce app using mainly express and ejs",
   "main": "app.js",
   "type": "module",
   "scripts": {
     "start": "nodemon src/app.js",
-    "testUsers": "mocha src/mockHelper/tests/userTest.test.js",
-    "testProducts": "mocha src/mockHelper/tests/productTest.test.js"
+    "testDisplay": "mocha src/mockHelper/tests/display.test.js"
   },
   "keywords": [],
   "author": "",
