@@ -1,14 +1,25 @@
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="..." class="card-img" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<div class="card my-2 bg-secondary d-flex col-12 flex-row">
+        <img src="<%- product.imageUrl %>" class="img-flex  col-4" alt="product image">   
+        <div class="d-flex justify-content-around align-items-center" style="width: inherit;">
+          <div class="flex-column">
+            <h5 class=" text-light"><%- product.name %></h5>
+            <p class="text-light"><%- product.category %></p>
+          </div>
+          <p class="h2 text-success">$<%- product.price %></p>
+          <button class="btn btn-sm btn-danger" onclick="return removeCartProduct('<%- product._id %>')">X</button>
         </div>
-      </div>
-    </div>
   </div>
+  <script>
+    let removeCartProduct = (targetProd) => {
+    fetch('/api/removeCartProduct', {
+        method:'POST',
+        body: targetProd,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    })
+      .then(data=>console.log(data))
+      .catch(error => console.error('Error:', error));
+    location.reload()
+  }
+  </script>

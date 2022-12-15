@@ -29,8 +29,21 @@ const showUser = (req,res) => {
     res.render('endpoints/user', {user: req.session.user})
 }
 
+
+const showCart = async(req,res) => {
+    try {
+        if (req.session.user) {
+            const {cart} = req.session.user
+            const targetCart = await cartsService.getByIdAndPopulate(cart)
+            res.render('endpoints/cart', {cart:targetCart})
+        } else {
+            res.render('./failures/notLogged')
+        }
+    } catch (error) {console.log(error)}
+} 
 export default {
     showHome,
     showProducts,
-    showUser
+    showUser,
+    showCart
 }

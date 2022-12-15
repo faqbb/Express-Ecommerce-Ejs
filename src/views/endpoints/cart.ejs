@@ -1,9 +1,10 @@
 <%- include('../partials/head') %>
-<body class="bg-secondary">
+<body class="bg-dark">
     <%- include('../partials/header') %>
-    <div class="d-flex flex-column align-items-start text-light bg-dark">
-        <% cartProducts.forEach(function(product){ %>
-            <%- include('../partials/cartProductCard', {product: product}); %>
+    <div class="d-flex flex-column align-items-start text-light bg-dark col-6">
+        <% console.log(cart) %> 
+        <% cart.forEach(function(product){ %>
+            <%- include('../partials/cartProductCard', {product: product.product}); %>
           <% }); %>
     </div>
     <%- include('../partials/scripts') %>

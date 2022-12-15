@@ -1,6 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import sessionController from "../controllers/session.controller.js";
+import { cartsService } from "../service/indexService.js";
 
 const router = Router()
 
@@ -37,6 +38,7 @@ router.get('/user', (req,res) =>{
     }
 })
 
+
 router.get('/logout', (req,res) =>{
     req.session.destroy()
     res.redirect('/')
@@ -61,5 +63,6 @@ router.get('/githubcallback', passport.authenticate('github'), (req,res) =>{
 })
 
 router.post('/addProduct', sessionController.addProduct)
+router.post('/removeCartProduct', sessionController.removeCartProduct)
 
 export default router
