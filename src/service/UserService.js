@@ -16,4 +16,10 @@ export default class UserService {
     saveUser = (user) => {
         return this.dao.save(user)
     }
+    updateUserEmail = (userId, newEmail) => {
+        return this.dao.updateUserEmail(userId, newEmail)
+    }
+    updateUserAddress = (userId, newAddress) => {
+        return this.dao.updateUserAddress(userId, newAddress)
+    }
 }

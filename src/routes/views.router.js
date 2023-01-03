@@ -11,6 +11,7 @@ router.get('/', viewsController.showHome)
 
 router.get('/cart', viewsController.showCart)
 
+
 router.get('/api/register', (req, res) => {
     res.render('endpoints/register')
 })

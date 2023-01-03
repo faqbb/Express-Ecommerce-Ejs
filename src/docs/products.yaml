@@ -1,0 +1,46 @@
+components:
+  schemas: 
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: mongo generated object ID
+        name:
+          type: String
+          description: product's name
+        price: 
+          type: Number
+          description: product's price
+        description: 
+          type: String
+          descriptiopn: brief description of the product
+        category: 
+          type: String
+          description: product's category
+        imageUrl: 
+          type: String
+          description: product's image url direction
+      example:
+        _id: 635c4e62222ecec82bd3cea2
+        name: Soap
+        price: 3824
+        description: Andy shoes are designed to keeping in mind durability as well as trend…
+        category: Industrial
+        imageUrl: https://loremflickr.com/640/480/sports
+
+
+paths:
+  /api/products:
+    get:
+      summary: Obtains all products available on database
+      tags:
+        - Products
+      responses: 
+        "200": 
+          description: products succesfully pulled
+          content: 
+            schema: 
+              type: Array
+              items: 
+                $ref: '#/components/schemas/Product'

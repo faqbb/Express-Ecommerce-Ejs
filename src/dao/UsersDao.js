@@ -14,7 +14,10 @@ export default class UsersDao {
     save = (propUser) => {
         return userModel.create(propUser)
     }
-    updateUser = (propUser) => {
-        
+    updateUserEmail = (userId, updateValue) => {
+        return userModel.findByIdAndUpdate({_id:userId},{email: updateValue})
+    }
+    updateUserAddress = (userId, updateValue) => {
+        return userModel.findByIdAndUpdate({_id: userId}, {address: updateValue})
     }
 }

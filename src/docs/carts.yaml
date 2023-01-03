@@ -1,0 +1,15 @@
+paths:
+  /api/cart:
+    get:
+      summary: Obtains the user's cart from the database and the products in it
+      tags:
+        - Products
+        - User
+      response: 
+        "200":
+          description: cart succesfully pulled
+          content: 
+            type: Array
+            items: 
+              type: Object
+              $ref: 'products.yaml#/components/schemas/Product'

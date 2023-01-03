@@ -1,7 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
 import sessionController from "../controllers/session.controller.js";
-import { cartsService } from "../service/indexService.js";
 
 const router = Router()
 
@@ -61,8 +60,9 @@ router.get('/githubcallback', passport.authenticate('github'), (req,res) =>{
     req.session.save()
     res.redirect('/api/user')
 })
-
+router.get('/finishPurchase', sessionController.finishPurchase)
 router.post('/addProduct', sessionController.addProduct)
 router.post('/removeCartProduct', sessionController.removeCartProduct)
+router.post('/completeUserData', sessionController.completeUserData)
 
 export default router

@@ -1,0 +1,14 @@
+<%- include('../partials/head') %>
+<body class="bg-secondary">
+    <%- include('../partials/header') %>
+    <div class="d-flex align-items-center text-light justify-content-around h1 mt-5 mx-5 px-5">
+       <div>Parece que algunos de tus datos estan incompletos</div>
+       <form id="completeUserdata" class="d-flex flex-column p-2 col-3 bg-dark" >
+        <label class="pt-4">Correo</label>
+        <input name="email">
+        <label class="pt-4">Direccion</label>
+        <input name="address">
+    </div>
+    <%- include('../partials/scripts') %>
+    <script src="completeUserData.js"></script>
+</body>
