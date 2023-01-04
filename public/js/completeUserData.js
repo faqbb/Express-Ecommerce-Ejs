@@ -1,5 +1,5 @@
 const form = document.getElementById('completeUserData')
-form.addEventListener('submit', evt =>{
+form.addEventListener('submit', async evt =>{
     evt.preventDefault()
     let data = new FormData(form)
     let obj = {}

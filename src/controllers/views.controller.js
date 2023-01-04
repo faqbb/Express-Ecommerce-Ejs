@@ -42,7 +42,6 @@ const showCart = async(req,res) => {
     } catch (error) {console.log(error)}
 } 
 
-
 export default {
     showHome,
     showProducts,

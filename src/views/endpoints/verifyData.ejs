@@ -4,16 +4,16 @@
     <div class="d-flex align-items-center text-light justify-content-around h1 mt-5 mx-5 px-5">
        <div>Verifica tus datos</div>
     </div>
-    <div>
+    <div class="d-flex">
         <div class="d-flex flex-column align-items-start text-light bg-dark col-6">
             <% cart.forEach(function(product){ %>
                 <%- include('../partials/cartProductCard', {product: product.product}); %>
                 <% }); %>
         </div>
         <div class="d-flex ms-3 bg-secondary col-6 align-items-center flex-column">
-            <div><img src="<% user.profilePic %> " alt="users profile pic"></div>
-            <div><%= user.name %></div>
-            <div><%= user.address %></div>
+            <div class="text-center"><img src="<%= user.profilePic %> " alt="users profile pic" class="w-25"></div>
+            <div class="text-light h2"><%= user.name %></div>
+            <div class="text-light h3"><%= user.address %></div>
             <% let totalPrice = 0 %>
             <% cart.forEach(function(product){ %>
                 <% totalPrice = totalPrice + product.product.price %>
@@ -26,9 +26,18 @@
             </div>
             <div> Se enviara la orden de compra a <%= user.email %></div>
             <div>
-               <a href="/api/sendPurchaseOrder" ><button class="btn btn-xl btn-success">Confirmar compra!</button></a> 
+               <a href="/successfullPurchase" ><button class="btn btn-xl btn-success" onclick="return sendPurchaseOrder()">Confirmar compra!</button></a> 
             </div>
         </div> 
     </div>
+    <script>
+    const sendPurchaseOrder = async() => {
+        fetch('/api/sendPurchaseOrder', {
+            method: 'POST'
+        })
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error))
+    }
+    </script>
     <%- include('../partials/scripts') %>
 </body>

@@ -64,5 +64,6 @@ router.get('/finishPurchase', sessionController.finishPurchase)
 router.post('/addProduct', sessionController.addProduct)
 router.post('/removeCartProduct', sessionController.removeCartProduct)
 router.post('/completeUserData', sessionController.completeUserData)
+router.post('/sendPurchaseOrder', sessionController.sendPurchaseOrder)
 
 export default router

@@ -24,5 +24,8 @@ router.get('/api/loginfail', (req,res) =>{
 router.get('/api/registerfail', (req,res) =>{
     res.render('failures/registerFail')
 })
+router.get('/successfullPurchase', (req,res) =>{
+    res.render('endpoints/successfullPurchase')
+})
 
 export default router

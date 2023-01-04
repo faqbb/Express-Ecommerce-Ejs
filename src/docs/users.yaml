@@ -1,0 +1,49 @@
+components:
+  schemas:
+    Users:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: mongo generated object ID
+        name:
+          type: String
+          description: user's name
+        email: 
+          type: String
+          description: user's email
+        password:
+          type: String
+          description: user's password
+        age:
+          type: Number
+          description: user's age
+        address: 
+          type: String
+          description: user's address
+        profilePic: 
+          type: String
+          description: user's profile pic url
+        role: 
+          type: String
+          description: user's role (user/admin)
+        cart:
+          type: ObjectID
+          description: mongo generated ID of the user's designated cart
+      example:        
+        name: "testuser"
+        email: "testingemail@.com"
+        password: "testpassword123"
+        age: 1000
+        address: "the void"
+        profilePic: "https://avatars.githubusercontent.com/u/84508942?v=4"
+        role: "user"
+        cart: 63b5f1a811112e29bf7d3d71
+
+
+paths:
+  /api/user:
+    get:
+      summary: Obtains the data of the logged user and creates a session user
+      tags: 
+        - Users
